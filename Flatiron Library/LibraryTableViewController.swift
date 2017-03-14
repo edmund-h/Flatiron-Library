@@ -10,29 +10,35 @@ import UIKit
 
 class LibraryTableViewController: UITableViewController {
 
+    let library = BookRepository.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let books: [[String:String]]
-        LibraryAPIClient.getBooks(returnBooks: {gotBooks in print (gotBooks)})
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.global(qos: .background).async {
+            LibraryAPIClient.getBooks(returnBooks: {(data) in
+                self.library.getBooklist(bookData: data, completion:{self.tableView.reloadData()})
+                
+                })
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return library.numberOfBooks()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
-        // Configure the cell...
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) 
+        cell.tag = indexPath.row
+        cell.textLabel!.text = library.getBook(at: indexPath.row).title
+        cell.detailTextLabel!.text = library.getBook(at: indexPath.row).author
         return cell
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8820276C1E7880010067EEF9 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820276B1E7880010067EEF9 /* AddBookViewController.swift */; };
 		88FAAED01E77959800CEF14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAECF1E77959800CEF14F /* AppDelegate.swift */; };
 		88FAAED51E77959800CEF14F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88FAAED31E77959800CEF14F /* Main.storyboard */; };
 		88FAAED71E77959800CEF14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88FAAED61E77959800CEF14F /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 		88FAAEF01E77959800CEF14F /* Flatiron_LibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAEEF1E77959800CEF14F /* Flatiron_LibraryUITests.swift */; };
 		88FAAF011E77962200CEF14F /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAF001E77962200CEF14F /* LibraryTableViewController.swift */; };
 		88FAAF031E7796F800CEF14F /* LibraryAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAF021E7796F800CEF14F /* LibraryAPIClient.swift */; };
+		88FAAF051E77A4F500CEF14F /* BookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAF041E77A4F500CEF14F /* BookRepository.swift */; };
+		88FAAF071E77A59800CEF14F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAF061E77A59800CEF14F /* Book.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8820276B1E7880010067EEF9 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 		88FAAECC1E77959800CEF14F /* Flatiron Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flatiron Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FAAECF1E77959800CEF14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88FAAED41E77959800CEF14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 		88FAAEF11E77959800CEF14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88FAAF001E77962200CEF14F /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
 		88FAAF021E7796F800CEF14F /* LibraryAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryAPIClient.swift; sourceTree = "<group>"; };
+		88FAAF041E77A4F500CEF14F /* BookRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookRepository.swift; sourceTree = "<group>"; };
+		88FAAF061E77A59800CEF14F /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				88FAAF021E7796F800CEF14F /* LibraryAPIClient.swift */,
+				88FAAF041E77A4F500CEF14F /* BookRepository.swift */,
+				88FAAF061E77A59800CEF14F /* Book.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -148,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				88FAAF001E77962200CEF14F /* LibraryTableViewController.swift */,
+				8820276B1E7880010067EEF9 /* AddBookViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -290,7 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				88FAAF031E7796F800CEF14F /* LibraryAPIClient.swift in Sources */,
+				8820276C1E7880010067EEF9 /* AddBookViewController.swift in Sources */,
 				88FAAF011E77962200CEF14F /* LibraryTableViewController.swift in Sources */,
+				88FAAF051E77A4F500CEF14F /* BookRepository.swift in Sources */,
+				88FAAF071E77A59800CEF14F /* Book.swift in Sources */,
 				88FAAED01E77959800CEF14F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +554,7 @@
 				88FAAEF61E77959800CEF14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88FAAEF71E77959800CEF14F /* Build configuration list for PBXNativeTarget "Flatiron LibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +563,7 @@
 				88FAAEF91E77959800CEF14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88FAAEFA1E77959800CEF14F /* Build configuration list for PBXNativeTarget "Flatiron LibraryUITests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +572,7 @@
 				88FAAEFC1E77959800CEF14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
