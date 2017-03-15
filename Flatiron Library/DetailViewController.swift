@@ -18,24 +18,29 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pubLabel: UILabel!
     @IBOutlet weak var lastCheckedOut: UILabel!
     @IBOutlet weak var checkoutInfo: UILabel!
+    @IBOutlet weak var checkoutButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let bookIndex = bookIndex else {return}
         let book = library.getBook(at: bookIndex)
+        let allLabels = [titleLabel, authorLabel, pubLabel, lastCheckedOut, checkoutInfo]
         titleLabel.text = book.title
-        titleLabel.adjustsFontSizeToFitWidth = true
         authorLabel.text = book.author
-        authorLabel.adjustsFontSizeToFitWidth = true
         pubLabel.text = book.publisher
-        pubLabel.adjustsFontSizeToFitWidth = true
-        
         let chkName = book.lastCheckoutName ?? ""
         let hideBars = book.lastCheckoutDate == nil && book.lastCheckoutName == nil
         checkoutInfo.isHidden = hideBars
         lastCheckedOut.isHidden = hideBars
         checkoutInfo.text = chkName
+        
+        allLabels.forEach({
+            $0!.adjustsFontSizeToFitWidth = true
+            ViewFormatter.formatLabel($0!)
+        })
+        ViewFormatter.formatButton(checkoutButton)
+        
         // Do any additional setup after loading the view.
         let deleteButton = UIBarButtonItem(title: "Delete", style: .plain , target: self, action: #selector (deleteEntry) )
         self.navigationItem.rightBarButtonItem = deleteButton

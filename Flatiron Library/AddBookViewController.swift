@@ -15,12 +15,16 @@ class AddBookViewController: UIViewController {
     @IBOutlet weak var pubField: UITextField!
     var allFields: [UITextField] = []
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var random: UIButton!
     var tries = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         allFields = [titleField, authorField, pubField]
         // Do any additional setup after loading the view.
+        allFields.forEach({ ViewFormatter.formatTextField($0) })
+        ViewFormatter.formatButton(submitButton)
+        ViewFormatter.formatButton(random)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,10 +54,6 @@ class AddBookViewController: UIViewController {
                 self.pubField.text = data["publisher"]
             }
         })
-    }
-    
-    @IBAction func done(_ sender: Any) {
-        self.dismiss(animated: true, completion: {})
     }
     
     func checkFields()-> Bool { //checks if there is text in the text fields

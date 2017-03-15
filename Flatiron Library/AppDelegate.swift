@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Make status bar white for visibility on choco background
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        let navigationBarAppearance = UINavigationBar.appearance()
+        // Make Nav bar brown with white buttons and text
+        navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.barTintColor = UIColor.chocolate
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         return true
     }
 

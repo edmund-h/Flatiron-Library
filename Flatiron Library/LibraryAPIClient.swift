@@ -27,7 +27,7 @@ class LibraryAPIClient{
                     DispatchQueue.main.async {
                         if let searchDict = sessionData as? [[String:Any]]{
                             print ("booklist found by API client")
-                            print (searchDict)
+                            //print (searchDict)
                             returnBooks (searchDict)
                             print ("apiclient called completion")
                         }else {print ("data improperly formatted")}

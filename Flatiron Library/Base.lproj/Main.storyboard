@@ -94,6 +94,7 @@
                     <connections>
                         <outlet property="authorField" destination="QtQ-iw-dDL" id="bpV-UC-aqk"/>
                         <outlet property="pubField" destination="Kre-uF-fml" id="TaG-Wz-FZJ"/>
+                        <outlet property="random" destination="Hft-Ja-Fot" id="Xn5-ht-QOe"/>
                         <outlet property="submitButton" destination="BVE-Ht-kXr" id="rK4-ld-oab"/>
                         <outlet property="titleField" destination="1MX-eJ-j1V" id="fuL-WB-hQx"/>
                     </connections>
@@ -115,18 +116,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EUT-ai-9Mq" id="nT7-Nb-XHd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jwI-w5-0yq">
-                                            <rect key="frame" x="15" y="17" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="18" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HZp-aT-bVg">
-                                            <rect key="frame" x="15" y="38" width="44" height="15"/>
+                                            <rect key="frame" x="15" y="38.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -144,7 +145,7 @@
                             <outlet property="delegate" destination="bYl-ZP-fbU" id="FjA-dt-h2T"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="kqS-rx-isE">
+                    <navigationItem key="navigationItem" title="Books by Title" id="kqS-rx-isE">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="NPm-vF-4Rd">
                             <connections>
                                 <segue destination="Miy-nB-UdS" kind="show" identifier="toAddBooks" id="VrL-4x-YwG"/>
@@ -170,8 +171,8 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdn-jB-TOh">
                                 <rect key="frame" x="19" y="129" width="338" height="57"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.324483722448349" green="0.27748054265975952" blue="0.25061294436454773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-Az-QYS">
@@ -191,7 +192,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="224" id="iOO-c2-Veg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -249,6 +250,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="authorLabel" destination="bZH-Az-QYS" id="YIl-hm-DKU"/>
+                        <outlet property="checkoutButton" destination="KO8-rc-it8" id="RCV-Wt-AM6"/>
                         <outlet property="checkoutInfo" destination="vpX-Wh-diq" id="kHA-Ic-21b"/>
                         <outlet property="lastCheckedOut" destination="GIG-fA-0R4" id="Vz3-PO-rGh"/>
                         <outlet property="pubLabel" destination="Fq6-Lo-gwU" id="7kA-eH-CoR"/>
@@ -257,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVi-OY-s8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2255.1999999999998" y="75.112443778110944"/>
+            <point key="canvasLocation" x="1950" y="64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qnb-w1-V4Q">

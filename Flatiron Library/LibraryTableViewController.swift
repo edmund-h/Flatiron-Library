@@ -41,6 +41,7 @@ class LibraryTableViewController: UITableViewController {
         cell.tag = indexPath.row
         cell.textLabel!.text = library.getBook(at: indexPath.row).title
         cell.detailTextLabel!.text = library.getBook(at: indexPath.row).author
+        ViewFormatter.formatTableCell(cell)
         return cell
     }
     
