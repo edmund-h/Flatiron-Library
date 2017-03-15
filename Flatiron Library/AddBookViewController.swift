@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddBookViewController: UIViewController {
+class AddBookViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var authorField: UITextField!
@@ -22,7 +22,10 @@ class AddBookViewController: UIViewController {
         super.viewDidLoad()
         allFields = [titleField, authorField, pubField]
         // Do any additional setup after loading the view.
-        allFields.forEach({ ViewFormatter.formatTextField($0) })
+        allFields.forEach({
+            ViewFormatter.formatTextField($0)
+            $0.delegate = self
+        })
         ViewFormatter.formatButton(submitButton)
         ViewFormatter.formatButton(random)
     }
@@ -43,7 +46,7 @@ class AddBookViewController: UIViewController {
         ]
         print ("about to call submission with data: \(dataToSubmit)")
         LibraryAPIClient.submitBook(bookData: dataToSubmit, success: {_ in })
-        DispatchQueue.main.async {self.dismiss(animated: true, completion: {}) }
+        DispatchQueue.main.async {  self.navigationController?.popViewController(animated: true)  }
     }
     
     @IBAction func random(_ sender: Any) {
@@ -60,7 +63,7 @@ class AddBookViewController: UIViewController {
         var mayProcede = true
         allFields.forEach { (thisField) in
             if !thisField.hasText{
-                UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     thisField.backgroundColor = UIColor.red
                 }, completion: {complete in })
                 mayProcede = false
@@ -68,5 +71,10 @@ class AddBookViewController: UIViewController {
             }
         }
         return mayProcede
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = UIColor.white
     }
 }

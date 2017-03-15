@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController{
     
     var bookIndex: Int?
     let library = BookRepository.sharedInstance
@@ -75,6 +75,7 @@ class DetailViewController: UIViewController {
         guard let bookIndex = bookIndex else {return}
         let bookID = library.getBook(at: bookIndex).id
         LibraryAPIClient.deleteBook(toDelete: bookIndex, id: bookID)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,7 +83,7 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 
