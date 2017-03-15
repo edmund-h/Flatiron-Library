@@ -13,11 +13,13 @@ class AddBookViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var authorField: UITextField!
     @IBOutlet weak var pubField: UITextField!
+    var allFields: [UITextField] = []
     @IBOutlet weak var submitButton: UIButton!
+    var tries = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        allFields = [titleField, authorField, pubField]
         // Do any additional setup after loading the view.
     }
 
@@ -28,10 +30,35 @@ class AddBookViewController: UIViewController {
     
 
     @IBAction func attemptSubmit(_ sender: UIButton) {
+        guard checkFields() else {return}
+        let dataToSubmit = [
+            "title" : titleField.text!,
+            "author": authorField.text!,
+            "publisher": pubField.text!,
+            "url":""
+        ]
+        print ("about to call submission with data: \(dataToSubmit)")
+        LibraryAPIClient.submitBook(bookData: dataToSubmit, success: {
+            print("server gave code \($0)")
+            self.done(self)
+        })
     }
     
-    @IBAction func done(_ sender: UIBarButtonItem) {
+    @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: {})
     }
-
+    
+    func checkFields()-> Bool { //checks if there is text in the text fields
+        var mayProcede = true
+        allFields.forEach { (thisField) in
+            if !thisField.hasText{
+                UIView.animate(withDuration: 0.5, animations: {
+                    thisField.backgroundColor = UIColor.red
+                }, completion: {complete in })
+                mayProcede = false
+                tries += 1
+            }
+        }
+        return mayProcede
+    }
 }

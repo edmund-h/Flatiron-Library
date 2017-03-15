@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8820276C1E7880010067EEF9 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820276B1E7880010067EEF9 /* AddBookViewController.swift */; };
+		8820276E1E78A5910067EEF9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820276D1E78A5910067EEF9 /* DetailViewController.swift */; };
 		88FAAED01E77959800CEF14F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FAAECF1E77959800CEF14F /* AppDelegate.swift */; };
 		88FAAED51E77959800CEF14F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88FAAED31E77959800CEF14F /* Main.storyboard */; };
 		88FAAED71E77959800CEF14F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88FAAED61E77959800CEF14F /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		8820276B1E7880010067EEF9 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
+		8820276D1E78A5910067EEF9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		88FAAECC1E77959800CEF14F /* Flatiron Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flatiron Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FAAECF1E77959800CEF14F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88FAAED41E77959800CEF14F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				88FAAF001E77962200CEF14F /* LibraryTableViewController.swift */,
 				8820276B1E7880010067EEF9 /* AddBookViewController.swift */,
+				8820276D1E78A5910067EEF9 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				88FAAF051E77A4F500CEF14F /* BookRepository.swift in Sources */,
 				88FAAF071E77A59800CEF14F /* Book.swift in Sources */,
 				88FAAED01E77959800CEF14F /* AppDelegate.swift in Sources */,
+				8820276E1E78A5910067EEF9 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

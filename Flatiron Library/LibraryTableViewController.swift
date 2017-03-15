@@ -18,6 +18,7 @@ class LibraryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard library.numberOfBooks() == 0 else {return}
         DispatchQueue.global(qos: .background).async {
             LibraryAPIClient.getBooks(returnBooks: {(data) in
                 self.library.getBooklist(bookData: data, completion:{self.tableView.reloadData()})
@@ -64,11 +65,11 @@ class LibraryTableViewController: UITableViewController {
     
     
     
-    /*
+
     // MARK: Extra functions
  extension LibraryTableViewController {
  
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -105,14 +106,16 @@ class LibraryTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard segue.identifier == "toDetailView" else {return}
+        let destination = segue.destination as! DetailViewController
+        let origin = sender as! UITableViewCell
+        destination.bookIndex = origin.tag
     }
  
 
-}*/
+}
