@@ -32,32 +32,44 @@ class DetailViewController: UIViewController {
         pubLabel.adjustsFontSizeToFitWidth = true
         
         let chkName = book.lastCheckoutName ?? ""
-        let chkDate = book.lastCheckoutDate ?? ""
         let hideBars = book.lastCheckoutDate == nil && book.lastCheckoutName == nil
         checkoutInfo.isHidden = hideBars
         lastCheckedOut.isHidden = hideBars
-        checkoutInfo.text = chkName + " - " + chkDate
+        checkoutInfo.text = chkName
         // Do any additional setup after loading the view.
-        let deleteButton = UIBarButtonItem(title: "Delete", style: .plain , target: nil, action: #selector (deleteEntry) )
-        self.navigationItem.leftBarButtonItem = deleteButton
+        let deleteButton = UIBarButtonItem(title: "Delete", style: .plain , target: self, action: #selector (deleteEntry) )
+        self.navigationItem.rightBarButtonItem = deleteButton
     }
 
     @IBAction func checkOut(_ sender: Any) {
-        var checkoutAlert = UIAlertController(title: "Checkout", message: "Please enter your name and the date!", preferredStyle: .alert)
+        let checkoutAlert = UIAlertController(title: "Checkout", message: "Please enter your name and the date!", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {cancel in})
         let ok = UIAlertAction(title: "Send", style: .default, handler: {ok in
             if let check = checkoutAlert.textFields?[0]{
                 guard check.hasText else {return}
-                
+                DispatchQueue.global(qos: .background).async {
+                    LibraryAPIClient.checkoutBook(checkout: check.text!, id: self.library.getBook(at: self.bookIndex!).id, success: {success in
+                        print ("success called")
+                        guard let text = success["lastcheckedoutby"] as? String else {return}
+                        DispatchQueue.main.async {
+                            self.lastCheckedOut.isHidden = false
+                            self.checkoutInfo.isHidden = false
+                            self.checkoutInfo.text = text
+                        }
+                    })
+                }
             }
         })
         checkoutAlert.addTextField(configurationHandler: { (textField) in })
         checkoutAlert.addAction(ok)
         checkoutAlert.addAction(cancel)
+        self.present(checkoutAlert, animated: true, completion: nil)
     }
     
     func deleteEntry() {
-        
+        guard let bookIndex = bookIndex else {return}
+        let bookID = library.getBook(at: bookIndex).id
+        LibraryAPIClient.deleteBook(toDelete: bookIndex, id: bookID)
     }
     
     override func didReceiveMemoryWarning() {

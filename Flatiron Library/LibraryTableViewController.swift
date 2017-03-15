@@ -18,25 +18,26 @@ class LibraryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard library.numberOfBooks() == 0 else {return}
+        //guard library.numberOfBooks() == 0 else {return}
         DispatchQueue.global(qos: .background).async {
             LibraryAPIClient.getBooks(returnBooks: {(data) in
                 self.library.getBooklist(bookData: data, completion:{self.tableView.reloadData()})
-                
                 })
             self.tableView.reloadData()
         }
+        self.tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
     
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return library.numberOfBooks()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+        //ViewMethods.formatBordersAndText(view: cell)
         cell.tag = indexPath.row
         cell.textLabel!.text = library.getBook(at: indexPath.row).title
         cell.detailTextLabel!.text = library.getBook(at: indexPath.row).author

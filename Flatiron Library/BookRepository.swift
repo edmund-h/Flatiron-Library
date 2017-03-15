@@ -32,8 +32,8 @@ class BookRepository{
                 if let urlStr = bookInfo ["url"] as? String{
                     url = URL(string: urlStr)
                 }//determine if there is a url and if it is a proper url
-                let lastCheckoutDay = bookInfo["lastCheckedOut"] as? String? ?? nil
-                let lastCheckoutBy = bookInfo[""]as? String? ?? nil
+                let lastCheckoutDay = bookInfo["lastcheckedout"] as? String? ?? nil
+                let lastCheckoutBy = bookInfo["lastcheckedoutby"] as? String? ?? nil
                 
                 var book = Book(title: titleInfo, author: authorInfo, publisher: publisherInfo, id: idInfo)
                 //actually put the struct together here, optionals go in below
@@ -46,7 +46,6 @@ class BookRepository{
             })
         //}
         self.books = temp.sorted(by: {(first, second) in
-            print ("alphabetizing books")
             return BookRepository.recursiveAlphaCheck(chars1: Array(first.title.lowercased().characters),
                                        chars2: Array(second.title.lowercased().characters))
             

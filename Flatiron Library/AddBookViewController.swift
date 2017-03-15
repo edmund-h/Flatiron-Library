@@ -38,9 +38,17 @@ class AddBookViewController: UIViewController {
             "url":""
         ]
         print ("about to call submission with data: \(dataToSubmit)")
-        LibraryAPIClient.submitBook(bookData: dataToSubmit, success: {
-            print("server gave code \($0)")
-            self.done(self)
+        LibraryAPIClient.submitBook(bookData: dataToSubmit, success: {_ in })
+        DispatchQueue.main.async {self.dismiss(animated: true, completion: {}) }
+    }
+    
+    @IBAction func random(_ sender: Any) {
+        GoogleBooksAPIClient.getRandomBook(returnBookData: {data in
+            DispatchQueue.main.async {
+                self.titleField.text = data["title"]
+                self.authorField.text = data["author"]
+                self.pubField.text = data["publisher"]
+            }
         })
     }
     

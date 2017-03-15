@@ -27,13 +27,7 @@
                                 <rect key="frame" x="0.0" y="2" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="Isw-4n-EXA">
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="SHb-aK-1kN">
-                                            <connections>
-                                                <action selector="done:" destination="Miy-nB-UdS" id="wnA-Ye-bjs"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="Isw-4n-EXA"/>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QtQ-iw-dDL">
@@ -63,6 +57,17 @@
                                     <action selector="attemptSubmit:" destination="Miy-nB-UdS" eventType="touchUpInside" id="aAF-JD-qNH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hft-Ja-Fot">
+                                <rect key="frame" x="158.5" y="488" width="58" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="fyn-Vf-Gmd"/>
+                                </constraints>
+                                <state key="normal" title="🎲"/>
+                                <connections>
+                                    <action selector="random:" destination="Miy-nB-UdS" eventType="touchUpInside" id="SZk-k3-RYZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,11 +77,13 @@
                             <constraint firstItem="Kre-uF-fml" firstAttribute="width" secondItem="QtQ-iw-dDL" secondAttribute="width" id="6ce-j8-SXj"/>
                             <constraint firstItem="Kre-uF-fml" firstAttribute="height" secondItem="QtQ-iw-dDL" secondAttribute="height" id="8Zc-Cg-Gzj"/>
                             <constraint firstItem="BVE-Ht-kXr" firstAttribute="top" secondItem="Kre-uF-fml" secondAttribute="bottom" constant="60" id="Dhg-eT-iEJ"/>
+                            <constraint firstItem="Hft-Ja-Fot" firstAttribute="centerX" secondItem="aac-u3-6i7" secondAttribute="centerX" id="Hlu-s5-bKB"/>
                             <constraint firstItem="QtQ-iw-dDL" firstAttribute="centerX" secondItem="aac-u3-6i7" secondAttribute="centerX" id="KbA-Ou-cvo"/>
                             <constraint firstItem="1MX-eJ-j1V" firstAttribute="width" secondItem="aac-u3-6i7" secondAttribute="width" multiplier="0.95" id="MBm-8i-EYZ"/>
                             <constraint firstItem="1MX-eJ-j1V" firstAttribute="height" secondItem="aac-u3-6i7" secondAttribute="height" multiplier="0.085" id="P6j-4f-91j"/>
                             <constraint firstItem="1MX-eJ-j1V" firstAttribute="centerX" secondItem="aac-u3-6i7" secondAttribute="centerX" id="QhB-uW-QX9"/>
                             <constraint firstItem="QtQ-iw-dDL" firstAttribute="width" secondItem="1MX-eJ-j1V" secondAttribute="width" id="XcT-Ci-izg"/>
+                            <constraint firstItem="Hft-Ja-Fot" firstAttribute="top" secondItem="BVE-Ht-kXr" secondAttribute="bottom" constant="32.5" id="fgL-qq-RSO"/>
                             <constraint firstItem="QtQ-iw-dDL" firstAttribute="top" secondItem="1MX-eJ-j1V" secondAttribute="bottom" constant="25" id="fkh-wj-hud"/>
                             <constraint firstItem="BVE-Ht-kXr" firstAttribute="centerX" secondItem="aac-u3-6i7" secondAttribute="centerX" id="oGl-r6-6Xv"/>
                             <constraint firstItem="1MX-eJ-j1V" firstAttribute="top" secondItem="O3a-hd-RXA" secondAttribute="bottom" constant="61" id="odq-T9-ljO"/>
@@ -164,7 +171,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdn-jB-TOh">
                                 <rect key="frame" x="19" y="129" width="338" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.324483722448349" green="0.27748054265975952" blue="0.25061294436454773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-Az-QYS">
