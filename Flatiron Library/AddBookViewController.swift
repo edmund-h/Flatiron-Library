@@ -16,19 +16,17 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
     var allFields: [UITextField] = []
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var random: UIButton!
-    var tries = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         allFields = [titleField, authorField, pubField]
-        // Do any additional setup after loading the view.
         allFields.forEach({
             ViewFormatter.formatTextField($0)
             $0.delegate = self
         })
         ViewFormatter.formatButton(submitButton)
         ViewFormatter.formatButton(random)
-    }
+    }//format buttons and fields
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,29 +35,28 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func attemptSubmit(_ sender: UIButton) {
-        guard checkFields() else {return}
+        guard checkFields() else {return} //will not procede if check for all fields to contain text fails
         let dataToSubmit = [
             "title" : titleField.text!,
             "author": authorField.text!,
             "publisher": pubField.text!,
             "url":""
         ]
-        print ("about to call submission with data: \(dataToSubmit)")
         LibraryAPIClient.submitBook(bookData: dataToSubmit, success: {_ in })
-        DispatchQueue.main.async {  self.navigationController?.popViewController(animated: true)  }
+        DispatchQueue.main.async {  _ = self.navigationController?.popViewController(animated: true)  }
     }
     
     @IBAction func random(_ sender: Any) {
-        GoogleBooksAPIClient.getRandomBook(returnBookData: {data in
+        GoogleBooksAPIClient.getRandomBook(returnBookData: {data in //co
             DispatchQueue.main.async {
                 self.titleField.text = data["title"]
                 self.authorField.text = data["author"]
                 self.pubField.text = data["publisher"]
             }
         })
-    }
+    }//sends a check to the
     
-    func checkFields()-> Bool { //checks if there is text in the text fields
+    func checkFields()-> Bool {
         var mayProcede = true
         allFields.forEach { (thisField) in
             if !thisField.hasText{
@@ -67,14 +64,13 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
                     thisField.backgroundColor = UIColor.red
                 }, completion: {complete in })
                 mayProcede = false
-                tries += 1
-            }
-        }
+            }//turn the background red for each field that has no text
+        }//if even one field has no text this will return false without
         return mayProcede
-    }
+    }//checks each field to make sure there is text in the text fields
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.backgroundColor = UIColor.white
-    }
+    }//this will make sure background color is white while editing for legibility purposes
 }

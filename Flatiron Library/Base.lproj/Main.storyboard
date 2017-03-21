@@ -145,7 +145,7 @@
                             <outlet property="delegate" destination="bYl-ZP-fbU" id="FjA-dt-h2T"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Books by Title" id="kqS-rx-isE">
+                    <navigationItem key="navigationItem" title="Books" id="kqS-rx-isE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NPm-vF-4Rd">
                             <connections>
                                 <segue destination="Miy-nB-UdS" kind="show" identifier="toAddBooks" id="VrL-4x-YwG"/>
@@ -237,13 +237,13 @@
                             <constraint firstItem="KO8-rc-it8" firstAttribute="centerX" secondItem="dC1-tU-JQg" secondAttribute="centerX" id="VNf-aZ-XKa"/>
                             <constraint firstItem="vpX-Wh-diq" firstAttribute="top" secondItem="Fq6-Lo-gwU" secondAttribute="bottom" constant="68.5" id="j0a-Tj-4Bd"/>
                             <constraint firstItem="Fq6-Lo-gwU" firstAttribute="centerX" secondItem="dC1-tU-JQg" secondAttribute="centerX" id="loM-Vq-D5I"/>
-                            <constraint firstItem="ggt-2I-FWu" firstAttribute="top" secondItem="KO8-rc-it8" secondAttribute="bottom" constant="153" id="myp-yD-I6f"/>
                             <constraint firstItem="Tdn-jB-TOh" firstAttribute="width" secondItem="dC1-tU-JQg" secondAttribute="width" multiplier="0.9" id="oNc-PX-LG7"/>
                             <constraint firstItem="vpX-Wh-diq" firstAttribute="width" secondItem="GIG-fA-0R4" secondAttribute="width" id="p1j-WR-Klb"/>
                             <constraint firstItem="bZH-Az-QYS" firstAttribute="width" secondItem="Tdn-jB-TOh" secondAttribute="width" id="rcU-qW-Wnx"/>
                             <constraint firstItem="bZH-Az-QYS" firstAttribute="height" secondItem="Tdn-jB-TOh" secondAttribute="height" id="sEz-A3-9er"/>
                             <constraint firstItem="Fq6-Lo-gwU" firstAttribute="top" secondItem="bZH-Az-QYS" secondAttribute="bottom" id="wUx-YI-6Jf"/>
                             <constraint firstItem="bZH-Az-QYS" firstAttribute="centerX" secondItem="dC1-tU-JQg" secondAttribute="centerX" id="xjs-wJ-Wou"/>
+                            <constraint firstItem="KO8-rc-it8" firstAttribute="top" secondItem="vpX-Wh-diq" secondAttribute="bottom" constant="51" id="zYw-X6-jfA"/>
                         </constraints>
                     </view>
                     <toolbarItems/>

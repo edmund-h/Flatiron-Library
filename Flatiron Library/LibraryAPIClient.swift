@@ -11,56 +11,41 @@ import Foundation
 class LibraryAPIClient{
     
     static let libraryURL = "https://flatironchallenge.herokuapp.com/books"
+    private static let session = URLSession.shared
     
     class func getBooks (returnBooks: @escaping ([[String:Any]])->() ){
-        print ("getBooks called")
+        print ("in api")
         let targetURL = URL(string: libraryURL)
         guard let finalURL = targetURL else {print("return with bad url"); return}
-        print("URL check passed")
-        let session = URLSession.shared
-        print("commencing URLSession")
         let task = session.dataTask(with: finalURL, completionHandler: {(data, response, error) in
-            
                 do{
                     guard let data = data else {print("no data received"); return}
                     let sessionData = try JSONSerialization.jsonObject(with: data, options: [])
-                    DispatchQueue.main.async {
-                        if let searchDict = sessionData as? [[String:Any]]{
-                            print ("booklist found by API client")
-                            //print (searchDict)
-                            returnBooks (searchDict)
-                            print ("apiclient called completion")
-                        }else {print ("data improperly formatted")}
-                        }
+                    if let searchDict = sessionData as? [[String:Any]]{
+                        print("about to call completion from api")
+                        returnBooks (searchDict)
+                    }else {print ("data improperly formatted")}
                 }catch{}
-            
         })
         task.resume()
     }
     
-    class func submitBook (bookData: [String:String], success: @escaping (Int)->()){
-        print ("submitBook called")
-        let targetURL = URL(string: libraryURL)
+    class func submitBook (bookData: [String:String], success: @escaping (Bool)->()){        let targetURL = URL(string: libraryURL)
         guard let finalURL = targetURL else {print("return with bad url"); return}
         var urlRequest = URLRequest(url: finalURL)
         urlRequest.httpMethod = "POST"
-        let session = URLSession.shared
         do{
-            print("initiating session with server")
             let jsonData = try JSONSerialization.data(withJSONObject: bookData, options: [])
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = jsonData
             let dataTask = session.dataTask(with: urlRequest, completionHandler: {(data, error, response) in
-                if let data = data{
-                    do{
-                        print ("response received from server")
-                        let responseJSON = try JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseDict = responseJSON as? [String:Any]{ print(responseDict) }
-                        else {print("could not serialize response JSON")}
-                    }catch{print ("could not parse response data")}
-                }else{print("no data received in response")}
                 if let response = response as? HTTPURLResponse{
-                    success(response.statusCode)
+                    switch response.statusCode{
+                    case 200...299:
+                        success(true)
+                    default:
+                        success(false)
+                    }
                 
                 }else{print("no response code from server")}
             })
@@ -70,53 +55,39 @@ class LibraryAPIClient{
         
     }
     
-    class func checkoutBook (checkout: String, id: Int, success: @escaping ([String:Any])->()){
-        print ("submitBook called")
-        let targetURL = URL(string: "\(libraryURL)/\(id)")
+    class func checkoutBook (with message: String, bookId: Int, success: @escaping ([String:Any])->()){
+        let targetURL = URL(string: "\(libraryURL)/\(bookId)")
         guard let finalURL = targetURL else {print("return with bad url"); return}
         var urlRequest = URLRequest(url: finalURL)
         urlRequest.httpMethod = "PUT"
-        let session = URLSession.shared
-        let bookData: [String: Any] = ["lastcheckedoutby": checkout, "lastcheckedout": true]
+        let bookData: [String: Any] = ["lastcheckedoutby": message, "lastcheckedout": true]
         do{
-            print("initiating session with server")
             let jsonData = try JSONSerialization.data(withJSONObject: bookData, options: [])
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = jsonData
             let dataTask = session.dataTask(with: urlRequest, completionHandler: {(data, error, response) in
                 if let data = data{
                     do{
-                        print ("response received from server")
                         let responseJSON = try JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseDict = responseJSON as? [String:Any]{ success(responseDict) }
+                        if let responseDict = responseJSON as? [String:Any]{
+                            success(responseDict)
+                        }//return response dictionary to VC for use in filling tablefields with new info
                         else {print("could not serialize response JSON")}
                     }catch{print ("could not parse response data")}
                 }else{print("no data received in response")}
             })
             dataTask.resume()
         }catch{print ("JSON Serialization invalid")}
-    }
+    }//this function takes the checkout info that the user wants to send and the book's identifier and sends that to the API
     
-    class func deleteBook (toDelete: Int, id: Int){
-        print ("deleteBook called")
+    class func deleteBook (id: Int){
         let targetURL = URL(string: "\(libraryURL)/\(id)")
         guard let finalURL = targetURL else {print("return with bad url"); return}
         var urlRequest = URLRequest(url: finalURL)
         urlRequest.httpMethod = "DELETE"
-        let session = URLSession.shared
-            print("initiating session with server")
-            let dataTask = session.dataTask(with: urlRequest, completionHandler: {(data, error, response) in
-                if let data = data{
-                    do{
-                        print ("response received from server")
-                        let responseJSON = try JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseDict = responseJSON as? [String:Any]{ print(responseDict) }
-                        else {print("could not serialize response JSON")}
-                    }catch{print ("could not parse response data")}
-                }else{print("no data received in response")}
-            })
+            let dataTask = session.dataTask(with: urlRequest, completionHandler: {(data, error, response) in })
         dataTask.resume()
-    }
+    }//this function simply sends a delete command to the
 }
 
 
